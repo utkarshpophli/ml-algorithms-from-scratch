@@ -1,7 +1,3 @@
-import matplotlib
-
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -615,56 +611,7 @@ def main():
         fig = px.scatter_3d(x=X[:, 0], y=X[:, 1], z=X[:, 2], color=labels.astype(str), title="DBSCAN Clustering")
         st.plotly_chart(fig)
     
-    elif algorithm == "Apriori":
-        def load_data():
-            transactions = [
-                ['milk', 'bread', 'butter'],
-                ['beer', 'bread'],
-                ['milk', 'bread', 'butter', 'beer'],
-                ['bread', 'butter'],
-                ['milk', 'bread', 'beer']
-            ]
-            return transactions
-        
-        min_support = st.sidebar.slider("Minimum Support", 0.01, 1.0, 0.5)
-        min_confidence = st.sidebar.slider("Minimum Confidence", 0.01, 1.0, 0.7)
-
-        st.subheader("Code")
-        st.code(dc.apriori, language='py')
-
-        transactions = load_data()
-        apriori = Apriori(min_support=min_support, min_confidence=min_confidence)
-        apriori.fit(transactions)
-        
-        frequent_itemsets = apriori.get_frequent_itemsets()
-        rules = apriori.get_rules()
-
-        st.subheader("Frequent Itemsets")
-        df_itemsets = pd.DataFrame(frequent_itemsets, columns=["Itemset", "Support"])
-        st.write(df_itemsets)
-
-        st.subheader("Association Rules")
-        df_rules = pd.DataFrame(rules, columns=["Antecedent", "Consequent", "Confidence"])
-        st.write(df_rules)
-
-        if df_itemsets.empty:
-            st.warning("No frequent itemsets found. Try lowering the support threshold.")
-
-        if df_rules.empty:
-            st.warning("No association rules found. Try lowering the confidence threshold.")
-
-        # Visualize association rules as a network plot
-        G = nx.DiGraph()
-        for rule in rules:
-            antecedent, consequent, confidence = rule
-            G.add_edge(antecedent, consequent, weight=confidence)
-        st.subheader("Visualization")
-        fig = plt.figure(figsize=(10, 6))
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=True, node_size=2000, node_color="skyblue", font_size=10, edge_color="black", linewidths=1, arrows=True)
-        labels = nx.get_edge_attributes(G, 'weight')
-        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-        st.pyplot(fig)
+    
 
     elif algorithm == "Perceptron":
         learning_rate = st.sidebar.slider("Learning Rate", 0.001, 0.1, 0.01)
