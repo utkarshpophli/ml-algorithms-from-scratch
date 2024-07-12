@@ -15,6 +15,11 @@
 ## Introduction
 
 This project demonstrates the implementation of various machine learning algorithms from scratch using Python, NumPy, and Plotly. The project also includes a Streamlit web application to visualize these algorithms in 3D plots.
+
+## Live Demo
+
+You can view the live version of the web application [here](https://ml-algorithms-from-scratch-lnvbwmqcoy5ds2vzmrbf7w.streamlit.app/).
+
 ## Features
 
 - Implementation of machine learning algorithms using only Python and NumPy.
@@ -75,9 +80,7 @@ Open your browser and go to http://localhost:8501 to see the application.
 * Neural Networks
 ## Web Application
 The web application provides an interactive interface to visualize the algorithms in 3D. It uses Plotly for creating the visualizations and Streamlit for the web interface.
-## Live Demo
 
-You can view the live version of the web application [here](https://ml-algorithms-from-scratch-lnvbwmqcoy5ds2vzmrbf7w.streamlit.app/).
 ## Contributing
 Contributions are welcome! Please create a pull request or open an issue to discuss any changes.
 ## License
